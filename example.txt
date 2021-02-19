@@ -1,9 +1,18 @@
 ## LOOP
 ## ARRAY
 Programme Invoker
+
 {
 INTEGER :: Ab10 // Invoke // Ae $
 CONST STRING ::  AAe := 15+13*4-((14-2/4)+8) $
+READ (" %" | @ Xe )$
+WRITE (" la valeur est ;%%  " | Xe|KE|LE )$
+
+WHILE (2+8 INF (14-2/4)+8) 
+	{
+	 READ (" %" | @ Xe )$
+	}
+EXECUT READ (" %" | @ Xe )$ IF (J EG 2) ELSE  EXECUT WRITE (" la valeur est ;  " | Xe )$ END_IF
 
 }
 /*

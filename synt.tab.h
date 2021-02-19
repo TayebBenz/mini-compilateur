@@ -71,8 +71,9 @@ extern int yydebug;
     mc_sep = 281,
     mc_idf = 282,
     var_sep = 283,
-    ADD_OP = 284,
-    MUL_OP = 285
+    SEP_READ = 284,
+    ADD_OP = 285,
+    MUL_OP = 286
   };
 #endif
 

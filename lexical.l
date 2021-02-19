@@ -29,15 +29,15 @@ real {Integer}+"."(0)*{Integer}+
 new_line [\n]
 comments ("/*"(.|\n)*"*/")  // doesnt work well since .* is a greedy operator
 character ['].[']
-chaine ["][^"]*["]
+chaine [a-zA-Z0-9]
 sign [-|+]
 signed_int "("+{sign}+{Integer}+")"
 signed_float "("+{sign}+{real}+")"
 operateur_arithmetique ":="
 multi [*/]
 operateur_logique ("EG"|"SUP"|"SUPE"|"INF"|"INFE"|"DIFF")
-signe_formatage [:%?&]
-separateur ("["|"]"|"|"|"("|")"|"#"|"{"|"}"|"$"|"@"|":")
+signe_formatage [;%?&]
+separateur ("["|"]"|"|"|"("|")"|"#"|"{"|"}"|"$"|"@"|":"|["])
 
 
 
@@ -70,6 +70,8 @@ separateur ("["|"]"|"|"|"("|")"|"#"|"{"|"}"|"$"|"@"|":")
 
 }
 
+[|] return SEP_READ;
+
 {signed_int} {
 	lenght = strlen(yytext);count+=strlen(yytext);
 	printf("%s is a signed int  line = %d\n",yytext,line);
@@ -86,13 +88,7 @@ separateur ("["|"]"|"|"|"("|")"|"#"|"{"|"}"|"$"|"@"|":")
 	
 }
 
-{chaine} { 
-	lenght = strlen(yytext);
-	count+=strlen(yytext);
-	printf("%s is a string line = %d\n",yytext,line);
-	return string;
-	
-}
+
 {real} {
 	count+=strlen(yytext);
 	printf("%s is a float line = %d\n",yytext,line); 
@@ -159,16 +155,17 @@ return var_sep;
 
 }
 {sign} {count+=strlen(yytext);
-printf("%s is a separator  line = %d\n",yytext,line);
+printf("%s is a ADD OP  line = %d\n",yytext,line);
 return ADD_OP;
 }
 {multi} {count+=strlen(yytext);
-printf("%s is a separator  line = %d\n",yytext,line);
+printf("%s is a MUL OP line = %d\n",yytext,line);
 return MUL_OP;
 }
 
 {separateur} {count+=strlen(yytext);
 printf("%s is a separator  line = %d\n",yytext,line);
+if(yytext == "|"){printf("found him \n");return SEP_READ;}
 return yytext[0];
 }
 
@@ -176,10 +173,17 @@ return yytext[0];
 printf("%s is a formate signe  line = %d\n",yytext,line);
 return mc_signeForma;
 }
-
-
-
 {IDF} { printf("%s is an idf at line %d collum %d\n",yytext,line,count); count+=strlen(yytext);return mc_idf;}
+
+{chaine} { 
+	lenght = strlen(yytext);
+	count+=strlen(yytext);
+	printf("%s is a string line = %d\n",yytext,line);
+	return string;
+	
+}
+
+
 
 
 {new_line} { line++; count = 1;
