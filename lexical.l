@@ -25,14 +25,14 @@ DIGIT [0-9]
 letter [a-zA-Z]
 IDF [A-Z]({letter}|{DIGIT})*
 Integer (([1-9]{DIGIT}*)|(0))
-real {Integer}+"."(0)*{Integer}+
+real {Integer}+"."(0)*{Integer}
 new_line [\n]
 comments ("/*"(.|\n)*"*/")  // doesnt work well since .* is a greedy operator
 character ['].[']
 chaine [a-zA-Z0-9,.=!]*
 sign [-|+]
-signed_int "("+{sign}+{Integer}+")"
-signed_float "("+{sign}+{real}+")"
+signed_int "("{sign}{Integer}")"
+signed_float "("{sign}{real}")"
 operateur_arithmetique ":="
 multi [*/]
 operateur_logique ("EG"|"SUP"|"SUPE"|"INF"|"INFE"|"DIFF")

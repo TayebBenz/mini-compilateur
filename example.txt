@@ -5,7 +5,7 @@
 Programme Acad
 {
    VAR  INTEGER :: Xe$ /*ceci est un commentaire*/
-   CONST  INTEGER :: Ac:=15$
+   CONST  INTEGER :: Ac:=(((-15)))$
     Xe:=5$
 	
 	READ (" %" | @ Xe )$
