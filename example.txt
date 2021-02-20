@@ -1,21 +1,36 @@
-## LOOP
-## ARRAY
-Programme Invoker
+## ARRAY $
+## PROCESS $
 
+
+Programme Acad
 {
-INTEGER :: Ab10 // Invoke // Ae $
-CONST STRING ::  AAe := 15+13*4-((14-2/4)+8) $
-READ (" %" | @ Xe )$
-WRITE (" la valeur est ;%%  " | Xe|KE|LE )$
-
-WHILE (2+8 INF (14-2/4)+8) 
+   VAR  INTEGER :: Xe$ /*ceci est un commentaire*/
+   CONST  INTEGER :: Ac:=15$
+    Xe:=5$
+	
+	READ (" %" | @ Xe )$
+	WRITE (" la valeur est ;  " | Xe )$
+	
+	WRITE (" la valeur est ;%%  " | Xe|KE|LE )$
+	
+	WHILE (I INF J) 
 	{
-	 READ (" %" | @ Xe )$
+	 A :=2$ A :=C+D/(-8)$
+	EXECUT 
+	I :=5$ I:=A+3$  
+	WHILE (I INF J) 
+	{
+	 A :=2$ A :=C+D/(-8)$
+	EXECUT 
+	I :=5$ I:=A+3$ IF (J EG 2) ELSE  EXECUT X:=A6*(-3)$ END_IF
 	}
-EXECUT READ (" %" | @ Xe )$ IF (J EG 2) ELSE  EXECUT WRITE (" la valeur est ;  " | Xe )$ END_IF
-
-}
+	IF (J EG 2) ELSE  EXECUT X:=A6*(-3)$ END_IF
+	}
+	
+	EXECUT I :=5$ I:=A+3$ IF (J EG 2) ELSE  EXECUT X:=A6*(-3)$ END_IF
+	
 /*
 need to test if multiple ((()))) get accepted by the signed float lexical rule
 
 */
+}

@@ -29,7 +29,7 @@ real {Integer}+"."(0)*{Integer}+
 new_line [\n]
 comments ("/*"(.|\n)*"*/")  // doesnt work well since .* is a greedy operator
 character ['].[']
-chaine [a-zA-Z0-9]
+chaine [a-zA-Z0-9,.=!]*
 sign [-|+]
 signed_int "("+{sign}+{Integer}+")"
 signed_float "("+{sign}+{real}+")"
@@ -112,6 +112,9 @@ printf("%s is a key word  line = %d\n",yytext,line);return mc_arr;}
 
 Programme {count+=strlen(yytext);
 printf("%s is a key word  line = %d\n",yytext,line);return mc_prog;}
+
+VAR {count+=strlen(yytext);
+printf("%s is a key word  line = %d\n",yytext,line);return mc_var;}
 
 CONST {count+=strlen(yytext);
 printf("%s is a key word  line = %d\n",yytext,line);return mc_const;}

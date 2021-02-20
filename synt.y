@@ -19,6 +19,7 @@ int num = 0;
 %token integer real car string mc_proc mc_prog mc_loop mc_arr mc_const mc_integer mc_real mc_car mc_string mc_read mc_write mc_while mc_execut mc_if mc_endif mc_else mc_arithOp mc_logiqOp mc_signeForma mc_sep mc_idf
 %token var_sep
 %token SEP_READ
+%token mc_var
 %left ADD_OP
 %left MUL_OP
 
@@ -26,21 +27,26 @@ int num = 0;
 %start S
 %%
 
-S: header begin var_dec body End {printf("programme juste\n"); YYACCEPT;};
-begin: '{';
-var_dec: type ':'':' list_var | mc_const type ':'':' list_var;
-type: mc_string | mc_car | mc_integer | mc_real;
-list_var: var '$' var_dec | var var_sep list_var | var '$' ;
-var: affectation | mc_idf ;
-affectation: mc_idf mc_arithOp expression;
-expression: operation operande expression | operation;
-operande: MUL_OP | ADD_OP;
-operation: mc_idf | integer | real | car | '"' string '"' | '(' expression ')';
-header: Bib_dec mc_prog mc_idf  
-| mc_prog mc_idf;
-Bib_dec: '#''#' bib Bib_dec | '#''#' bib;  
+S: header begin body End {printf("programme juste\n"); YYACCEPT;};
+header: Bib_dec mc_prog mc_idf  | mc_prog mc_idf;
+
+Bib_dec: '#''#' bib '$' Bib_dec | '#''#' bib '$';  
 bib:mc_arr | mc_proc | mc_loop;
-End: '}';
+
+begin: '{'  var_dec | '{';
+
+var_dec: mc_var type ':'':' list_var | mc_const type ':'':' constante_list_var ;
+type: mc_string | mc_car | mc_integer | mc_real;
+constante_list_var:  affectation '$' var_dec | affectation var_sep list_var | affectation '$' ;
+list_var: mc_idf '$' var_dec | mc_idf var_sep list_var | mc_idf '$' ;
+
+affectation: mc_idf mc_arithOp opera;
+opera: constante | express | '('express')';
+express: opera operand opera;
+operand: ADD_OP | MUL_OP  ;
+constante: '"'string'"' | integer | real | car | mc_idf ;
+
+
 
 read: mc_read '(' '"' mc_signeForma '"' SEP_READ '@' mc_idf ')' '$' ;
 write: mc_write '(' '"' write_string SEP_READ write_var ')' '$' { if(num != 0){printf("error signe de formatage is not equale to idf %d\n",num);}} ;
@@ -48,17 +54,16 @@ write_var: mc_idf {num--;}| mc_idf SEP_READ write_var {num--;};
 write_string: string write_string | mc_signeForma write_string {num++;} | '"';
 
 loop: mc_while '(' condition ')' '{' body '}';
-condition: opera mc_logiqOp opera {printf("condition finished\n");};
-opera: var | express | '('express')';
-express: opera operand opera;
-operand: ADD_OP | MUL_OP  ;
-var: '"'string'"' | integer | real | car | mc_idf ;
+condition: opera mc_logiqOp opera ;
+
 
 if_statement: mc_execut body mc_if '(' condition ')' else_statement;
 else_statement: mc_endif | mc_else mc_execut body mc_endif;
-body: instruction | instruction body;
-instruction: affectation |read | write | loop | if_statement;
 
+body: instruction | instruction body;
+instruction: affectation '$' | read | write | loop | if_statement;
+
+End: '}';
 
 
 
