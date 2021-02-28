@@ -75,15 +75,21 @@ separateur ("["|"]"|"|"|"("|")"|"#"|"{"|"}"|"$"|"@"|":"|["])
 {signed_int} {
 	lenght = strlen(yytext);count+=strlen(yytext);
 	printf("%s is a signed int  line = %d\n",yytext,line);
+	tmp = malloc(sizeof(char)*(strlen(yytext)+1)); 
+        strcpy(tmp,&yytext[1]); tmp[strlen(tmp)-1] = '\0' ; yylval.chaine = tmp ; 
 	return integer;
 }
 {signed_float} {
 	lenght = strlen(yytext);count+=strlen(yytext);
 	printf("%s is a signed float line = %d\n",yytext,line);
+	tmp = malloc(sizeof(char)*(strlen(yytext)+1)); 
+        strcpy(tmp,&yytext[1]); tmp[strlen(tmp)-1] = '\0' ; yylval.chaine = tmp ; 
 	return real;
 }
 {character} {lenght = strlen(yytext);count+=strlen(yytext);
 	printf("%s is a char line = %d\n",yytext,line);
+	tmp = malloc(sizeof(char)*(strlen(yytext)+1)); 
+        strcpy(tmp,yytext);yylval.chaine = tmp ; 
 	return car;
 	
 }
@@ -91,12 +97,16 @@ separateur ("["|"]"|"|"|"("|")"|"#"|"{"|"}"|"$"|"@"|":"|["])
 
 {real} {
 	count+=strlen(yytext);
-	printf("%s is a float line = %d\n",yytext,line); 
+	printf("%s is a float line = %d\n",yytext,line);
+	tmp = malloc(sizeof(char)*(strlen(yytext)+1)); 
+        strcpy(tmp,yytext);yylval.chaine = tmp ;  
 	return real;
 }
 {Integer} {
 	count+=strlen(yytext);
 	printf("%s is aN int line = %d\n",yytext,line);
+	tmp = malloc(sizeof(char)*(strlen(yytext)+1)); 
+        strcpy(tmp,yytext);yylval.chaine = tmp ; 
 	return integer;
 }
 
@@ -163,20 +173,26 @@ return ADD_OP;
 }
 {multi} {count+=strlen(yytext);
 printf("%s is a MUL OP line = %d\n",yytext,line);
+tmp = malloc(sizeof(char)*(strlen(yytext)+1)); 
+strcpy(tmp,yytext);yylval.chaine = tmp ; 
 return MUL_OP;
 }
 
 {separateur} {count+=strlen(yytext);
 printf("%s is a separator  line = %d\n",yytext,line);
-if(yytext == "|"){printf("found him \n");return SEP_READ;}
 return yytext[0];
 }
 
 {signe_formatage} {count+=strlen(yytext);
 printf("%s is a formate signe  line = %d\n",yytext,line);
+tmp = malloc(sizeof(char)*(strlen(yytext)+1)); 
+strcpy(tmp,yytext);yylval.chaine = tmp ; 
 return mc_signeForma;
 }
-{IDF} { printf("%s is an idf at line %d collum %d\n",yytext,line,count); count+=strlen(yytext);return mc_idf;}
+{IDF} { printf("%s is an idf at line %d collum %d\n",yytext,line,count); count+=strlen(yytext);
+	//insert(yytext,"","IDF");
+	tmp = malloc(sizeof(char)*(strlen(yytext)+1)); 
+	strcpy(tmp,yytext);yylval.chaine = tmp ; return mc_idf;}
 
 {chaine} { 
 	lenght = strlen(yytext);

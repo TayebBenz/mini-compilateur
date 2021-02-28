@@ -961,48 +961,58 @@ YY_RULE_SETUP
 {
 	lenght = strlen(yytext);count+=strlen(yytext);
 	printf("%s is a signed int  line = %d\n",yytext,line);
+	tmp = malloc(sizeof(char)*(strlen(yytext)+1)); 
+        strcpy(tmp,&yytext[1]); tmp[strlen(tmp)-1] = '\0' ; yylval.chaine = tmp ; 
 	return integer;
 }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 80 "lexical.l"
+#line 82 "lexical.l"
 {
 	lenght = strlen(yytext);count+=strlen(yytext);
 	printf("%s is a signed float line = %d\n",yytext,line);
+	tmp = malloc(sizeof(char)*(strlen(yytext)+1)); 
+        strcpy(tmp,&yytext[1]); tmp[strlen(tmp)-1] = '\0' ; yylval.chaine = tmp ; 
 	return real;
 }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 85 "lexical.l"
+#line 89 "lexical.l"
 {lenght = strlen(yytext);count+=strlen(yytext);
 	printf("%s is a char line = %d\n",yytext,line);
+	tmp = malloc(sizeof(char)*(strlen(yytext)+1)); 
+        strcpy(tmp,yytext);yylval.chaine = tmp ; 
 	return car;
 	
 }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 92 "lexical.l"
+#line 98 "lexical.l"
 {
 	count+=strlen(yytext);
-	printf("%s is a float line = %d\n",yytext,line); 
+	printf("%s is a float line = %d\n",yytext,line);
+	tmp = malloc(sizeof(char)*(strlen(yytext)+1)); 
+        strcpy(tmp,yytext);yylval.chaine = tmp ;  
 	return real;
 }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 97 "lexical.l"
+#line 105 "lexical.l"
 {
 	count+=strlen(yytext);
 	printf("%s is aN int line = %d\n",yytext,line);
+	tmp = malloc(sizeof(char)*(strlen(yytext)+1)); 
+        strcpy(tmp,yytext);yylval.chaine = tmp ; 
 	return integer;
 }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 103 "lexical.l"
+#line 113 "lexical.l"
 { count+=strlen(yytext);
 printf("%s is a key word  line = %d\n",yytext,line);
 	return mc_proc;
@@ -1011,103 +1021,103 @@ printf("%s is a key word  line = %d\n",yytext,line);
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 108 "lexical.l"
+#line 118 "lexical.l"
 {count+=strlen(yytext);
 printf("%s is a key word  line = %d\n",yytext,line);return mc_loop;}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 110 "lexical.l"
+#line 120 "lexical.l"
 {count+=strlen(yytext);
 printf("%s is a key word  line = %d\n",yytext,line);return mc_arr;}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 113 "lexical.l"
+#line 123 "lexical.l"
 {count+=strlen(yytext);
 printf("%s is a key word  line = %d\n",yytext,line);return mc_prog;}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 116 "lexical.l"
+#line 126 "lexical.l"
 {count+=strlen(yytext);
 printf("%s is a key word  line = %d\n",yytext,line);return mc_var;}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 119 "lexical.l"
+#line 129 "lexical.l"
 {count+=strlen(yytext);
 printf("%s is a key word  line = %d\n",yytext,line);return mc_const;}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 121 "lexical.l"
+#line 131 "lexical.l"
 {count+=strlen(yytext);
 printf("%s is a key word  line = %d\n",yytext,line);return mc_integer;}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 123 "lexical.l"
+#line 133 "lexical.l"
 {count+=strlen(yytext);
 printf("%s is a key word  line = %d\n",yytext,line);return mc_real;}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 125 "lexical.l"
+#line 135 "lexical.l"
 {count+=strlen(yytext);
 printf("%s is a key word  line = %d\n",yytext,line);return mc_car;}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 127 "lexical.l"
+#line 137 "lexical.l"
 {count+=strlen(yytext);
 printf("%s is a key word  line = %d\n",yytext,line);return mc_string;}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 130 "lexical.l"
+#line 140 "lexical.l"
 {count+=strlen(yytext);
 printf("%s is a key word  line = %d\n",yytext,line);return mc_read;}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 132 "lexical.l"
+#line 142 "lexical.l"
 {count+=strlen(yytext);
 printf("%s is a key word  line = %d\n",yytext,line);return mc_write;}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 135 "lexical.l"
+#line 145 "lexical.l"
 {count+=strlen(yytext);
 printf("%s is a key word  line = %d\n",yytext,line);return mc_while;}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 137 "lexical.l"
+#line 147 "lexical.l"
 {count+=strlen(yytext);
 printf("%s is a key word  line = %d\n",yytext,line);return mc_execut;}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 139 "lexical.l"
+#line 149 "lexical.l"
 {count+=strlen(yytext);
 printf("%s is a key word  line = %d\n",yytext,line);return mc_if;}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 141 "lexical.l"
+#line 151 "lexical.l"
 {count+=strlen(yytext);
 printf("%s is a key word  line = %d\n",yytext,line);return mc_endif;}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 143 "lexical.l"
+#line 153 "lexical.l"
 {count+=strlen(yytext);
 printf("%s is a key word  line = %d\n",yytext,line);return mc_else;}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 146 "lexical.l"
+#line 156 "lexical.l"
 {count+=strlen(yytext);
 printf("%s is an arithmetique operator  line = %d\n",yytext,line);
 return mc_arithOp;
@@ -1115,7 +1125,7 @@ return mc_arithOp;
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 150 "lexical.l"
+#line 160 "lexical.l"
 {count+=strlen(yytext);
 printf("%s is an loqique operator  line = %d\n",yytext,line);
 return mc_logiqOp;
@@ -1123,7 +1133,7 @@ return mc_logiqOp;
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 155 "lexical.l"
+#line 165 "lexical.l"
 {count+=strlen(yytext);
 printf("%s is a separator  line = %d\n",yytext,line);
 return var_sep;
@@ -1132,7 +1142,7 @@ return var_sep;
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 160 "lexical.l"
+#line 170 "lexical.l"
 {count+=strlen(yytext);
 printf("%s is a ADD OP  line = %d\n",yytext,line);
 return ADD_OP;
@@ -1140,37 +1150,43 @@ return ADD_OP;
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 164 "lexical.l"
+#line 174 "lexical.l"
 {count+=strlen(yytext);
 printf("%s is a MUL OP line = %d\n",yytext,line);
+tmp = malloc(sizeof(char)*(strlen(yytext)+1)); 
+strcpy(tmp,yytext);yylval.chaine = tmp ; 
 return MUL_OP;
 }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 169 "lexical.l"
+#line 181 "lexical.l"
 {count+=strlen(yytext);
 printf("%s is a separator  line = %d\n",yytext,line);
-if(yytext == "|"){printf("found him \n");return SEP_READ;}
 return yytext[0];
 }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 175 "lexical.l"
+#line 186 "lexical.l"
 {count+=strlen(yytext);
 printf("%s is a formate signe  line = %d\n",yytext,line);
+tmp = malloc(sizeof(char)*(strlen(yytext)+1)); 
+strcpy(tmp,yytext);yylval.chaine = tmp ; 
 return mc_signeForma;
 }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 179 "lexical.l"
-{ printf("%s is an idf at line %d collum %d\n",yytext,line,count); count+=strlen(yytext);return mc_idf;}
+#line 192 "lexical.l"
+{ printf("%s is an idf at line %d collum %d\n",yytext,line,count); count+=strlen(yytext);
+	//insert(yytext,"","IDF");
+	tmp = malloc(sizeof(char)*(strlen(yytext)+1)); 
+	strcpy(tmp,yytext);yylval.chaine = tmp ; return mc_idf;}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 181 "lexical.l"
+#line 197 "lexical.l"
 { 
 	lenght = strlen(yytext);
 	count+=strlen(yytext);
@@ -1182,26 +1198,26 @@ YY_RULE_SETUP
 case 34:
 /* rule 34 can match eol */
 YY_RULE_SETUP
-#line 192 "lexical.l"
+#line 208 "lexical.l"
 { line++; count = 1;
 }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 196 "lexical.l"
+#line 212 "lexical.l"
 { count+=strlen(yytext);}
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 197 "lexical.l"
+#line 213 "lexical.l"
 {printf("Erreur %s code %d line %d collone %d\n",yytext,yytext[0],line,count); count+=strlen(yytext);}
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 200 "lexical.l"
+#line 216 "lexical.l"
 ECHO;
 	YY_BREAK
-#line 1205 "lex.yy.c"
+#line 1221 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2206,6 +2222,6 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 200 "lexical.l"
+#line 216 "lexical.l"
 
 

@@ -45,34 +45,34 @@ extern int yydebug;
 # define YYTOKENTYPE
   enum yytokentype
   {
-    integer = 258,
-    real = 259,
-    car = 260,
-    string = 261,
-    mc_proc = 262,
-    mc_prog = 263,
-    mc_loop = 264,
-    mc_arr = 265,
-    mc_const = 266,
-    mc_integer = 267,
-    mc_real = 268,
-    mc_car = 269,
-    mc_string = 270,
-    mc_read = 271,
-    mc_write = 272,
-    mc_while = 273,
-    mc_execut = 274,
-    mc_if = 275,
-    mc_endif = 276,
-    mc_else = 277,
-    mc_arithOp = 278,
-    mc_logiqOp = 279,
-    mc_signeForma = 280,
-    mc_sep = 281,
-    mc_idf = 282,
-    var_sep = 283,
-    SEP_READ = 284,
-    mc_var = 285,
+    mc_proc = 258,
+    mc_prog = 259,
+    mc_loop = 260,
+    mc_arr = 261,
+    mc_const = 262,
+    mc_integer = 263,
+    mc_real = 264,
+    mc_car = 265,
+    mc_string = 266,
+    mc_read = 267,
+    mc_write = 268,
+    mc_while = 269,
+    mc_execut = 270,
+    mc_if = 271,
+    mc_endif = 272,
+    mc_else = 273,
+    mc_arithOp = 274,
+    mc_logiqOp = 275,
+    mc_sep = 276,
+    mc_idf = 277,
+    mc_signeForma = 278,
+    var_sep = 279,
+    SEP_READ = 280,
+    mc_var = 281,
+    integer = 282,
+    real = 283,
+    string = 284,
+    car = 285,
     ADD_OP = 286,
     MUL_OP = 287
   };
@@ -80,7 +80,20 @@ extern int yydebug;
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef int YYSTYPE;
+
+union YYSTYPE
+{
+#line 43 "synt.y" /* yacc.c:1909  */
+
+	int  entier;
+	char * chaine;
+	float real ;
+	char chars[10];
+
+#line 94 "synt.tab.h" /* yacc.c:1909  */
+};
+
+typedef union YYSTYPE YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
 #endif

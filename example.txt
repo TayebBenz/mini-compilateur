@@ -1,33 +1,37 @@
 ## ARRAY $
 ## PROCESS $
+## LOOP $
 
 
 Programme Acad
 {
-   VAR  INTEGER :: Xe$ /*ceci est un commentaire*/
-   CONST  INTEGER :: Ac:=(((-15)))$
-    Xe:=5$
+   VAR  INTEGER :: Xe // A // C // D // T[10]$ /*ceci est un commentaire*/
+   VAR  REAL :: In // KE // LE $
+   VAR INTEGER :: I // J$
+   CONST  INTEGER :: Ac:=(-15)$
+    Xe:=5+A*5$
+    T[5] := T[9] * 6 $
 	
-	READ (" %" | @ Xe )$
+	READ (" ;" | @ Xe )$
 	WRITE (" la valeur est ;  " | Xe )$
 	
 	WRITE (" la valeur est ;%%  " | Xe|KE|LE )$
 	
 	WHILE (I INF J) 
 	{
-	 A :=2$ A :=C+D/(-8)$
+	 A :=2/A*0$ A :=C+D/(-8)$
 	EXECUT 
 	I :=5$ I:=A+3$  
 	WHILE (I INF J) 
 	{
 	 A :=2$ A :=C+D/(-8)$
 	EXECUT 
-	I :=5$ I:=A+3$ IF (J EG 2) ELSE  EXECUT X:=A6*(-3)$ END_IF
+	I :=5$ I:=A+3$ IF (J EG 2) ELSE  EXECUT Xe:=A-6*(-3)$ END_IF
 	}
-	IF (J EG 2) ELSE  EXECUT X:=A6*(-3)$ END_IF
+	IF (J EG 2) ELSE  EXECUT Xe:=A-6*(-3)$ END_IF
 	}
 	
-	EXECUT I :=5$ I:=A+3$ IF (J EG 2) ELSE  EXECUT X:=A6*(-3)$ END_IF
+	EXECUT I :=5$ I:=A+3$ IF (J EG 2) ELSE  EXECUT Xe:=A-6*(-3)$ END_IF
 	
 /*
 need to test if multiple ((()))) get accepted by the signed float lexical rule
